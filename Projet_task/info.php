@@ -1,14 +1,5 @@
 <?php
-// Exercice 26
-// Reprendre le projet Task avec la demo ci-dessus
 
-// Le But : Ajouter une page sur le projet dont le but est d'enregistrer une Task en BDD.
-
-// Les Contraintes :
-// 1) L'accès à la page (le lien dans le menu navigation) ne doit s'afficher que pour les utilisateurs connecté
-// 2) N'oubliez pas que la Task doit être relié à l'id de l'utilisateur connecté (dans la requête INSERT INTO, vous devrez donner une valeur pour la clé étrangère id_user)
-// 3) Fait le tout en Model View Controller
-// la page controller se nommera : task.php
 
 
 //Démarer la Session

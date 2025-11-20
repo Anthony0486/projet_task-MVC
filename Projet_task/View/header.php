@@ -12,19 +12,25 @@
     <header>
         <nav>
             <ul>
-                <li><a href="../index.php">Accueil General</a></li>
                 <?php 
                     switch($title){
                         case 'Mon Compte Utilisateur' :
-                            echo "<li><a href='./index.php'>Accueil TODO LIST</a></li>";
+                            echo "<li><a href='./index.php'>Accueil</a></li>";
                             break;
-                        case 'accueil TODO LIST' :
+                        case 'accueil' :
                             echo "<li><a href='./info.php'>Vos Infos</a></li>";
                             break;
+                        case 'Mes tâches' :
+                            echo "<li><a href='./index.php'>Accueil</a></li>";
+                            echo "<li><a href='./info.php'>Vos Infos</a></li>";
+                            break;
+
                     }
 
                     if(isset($_SESSION['nickname'])){
                         echo "<li><a href='./deco.php'>Se Deconnecter</a></li>";
+                        echo "<li><a href='./task.php'>Mes tâches</a></li>";
+
                     }
                 ?>
                 

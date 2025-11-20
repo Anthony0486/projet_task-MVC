@@ -6,7 +6,7 @@ session_start();
 include './Model/model_user.php';
 
 //Initialiser ma variable d'affichage
-$title = 'accueil TODO LIST';
+$title = 'accueil';
 $message = '';
 $messageCo = '';
 
@@ -129,4 +129,5 @@ include './View/header.php';
 include './View/view_accueil.php';
         
 include './View/footer.php';
+
 ?>
