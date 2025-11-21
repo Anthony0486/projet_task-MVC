@@ -12,21 +12,35 @@
 session_start();
 
 $title = 'Mes tâches';
+$messageTask = '';
 
 include './Model/model_task.php';
 
 if(isset($_POST['add'])){
     $nameTask = '';
     $contentTask = '';
-    if(!empty($_POST['nameTask']) && !empty($_POST['contentTask'])){
-        $nameTask = htmlentities(stripslashes(strip_tags(trim($_POST['firstname']))));
-        $contentTask = htmlentities(stripslashes(strip_tags(trim($_POST['firstname']))));
+    $dateTask = $_POST['dateTask'];
+    $timeTask = (new DateTime())->format('H:i:s');
+    $dateTimeTask = $dateTask . " " . $timeTask;
+
+    if(!empty($_POST['nameTask']) && !empty($_POST['contentTask']) && !empty($_POST['dateTask'])){
+        $nameTask = htmlentities(stripslashes(strip_tags(trim($_POST['nameTask']))));
+        $contentTask = htmlentities(stripslashes(strip_tags(trim($_POST['contentTask']))));
+    }else{
+        $messageTask = "<p>Veuillez remplir tous les champs</p>";
     }
 
-    //Création de l'objet de connexion
     $bdd = new PDO('mysql:host=localhost;dbname=task','root','root',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
-    createTask($bdd,$nameTask,$contentTask,$_SESSION['id']);
+    $data = createTask($bdd,$nameTask,$contentTask, $dateTimeTask,$_SESSION['id']);
+    
+    if(!empty($data)){
+
+        $messageTask = $data['message'];
+
+    }else{
+        $messageTask = "Echec de l'enregistrement de la tâche";
+    }
 }
 
 include './View/header.php';
