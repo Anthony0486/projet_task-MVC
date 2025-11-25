@@ -11,11 +11,12 @@ class Users {
     private ?PDO $bdd;
 
     //CONSTRUCTEUR
-    public function __construct(?PDO $bdd,?string $nickname = '',?string $email ='', ?string $password = ''){
+    public function __construct(?PDO $bdd, ?string $nickname = '',?string $email =''){
         $this->bdd = $bdd;
         $this->nickname = $nickname;
         $this->email = $email;
-        $this->password = $password;
+   
+       
     }
 
     //GETTER ET SETTER
@@ -155,9 +156,7 @@ class Users {
         }catch(EXCEPTION $error){
             die($error->getMessage());
         }
-    }
-
-    
+    }    
 }
 
 

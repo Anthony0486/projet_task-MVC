@@ -38,8 +38,11 @@ if(isset($_POST['signIn'])){
 
                 // => EXERCICE 24
                 //Try...Catch -> D'envoyer une requête SELECT pour récupére les utilisateurs qui possèdent le même pseudo et le même email que ceux entrer
-                $user = new Users($bdd,$nickname, $email, $password);
-                $data = $user->readUserByNicknameAndEmail();
+                $user = new Users($bdd);
+                $data = $user->setNickname($nickname)
+                            ->setEmail($email)
+                            ->setPassword($password)
+                            ->readUserByNicknameAndEmail();
                 //Vérification des $data
                 if(empty($data)){
                     //$data vide -> signifie que nickname et email sont dispo
@@ -104,6 +107,7 @@ if(isset($_POST['signUp'])){
                         'email' => $data['email_user'],
                         'role' => $data['role']
                 ];
+
 
                 //J'affiche le message de confirmation
                 $messageCo = "{$_SESSION['nickname']} est connecté";

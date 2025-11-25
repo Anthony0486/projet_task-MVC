@@ -4,6 +4,7 @@ session_start();
 
 //IMPORT DE RESSOURCE
 include './Model/UsersModel.php';
+include './utils/functions.php';
 
 //Variable d'affichage
 $title = 'Mon Compte Utilisateur';
@@ -14,20 +15,19 @@ if(isset($_POST['update'])){
     $firstname = '';
     $lastname = '';
     if(!empty($_POST['firstname'])){
-        $firstname = htmlentities(stripslashes(strip_tags(trim($_POST['firstname']))));
+        $firstname = sanitize($_POST['firstname']);
     }
     if(!empty($_POST['lastname'])){
-        $lastname = htmlentities(stripslashes(strip_tags(trim($_POST['lastname']))));
+        $lastname = sanitize($_POST['lastname']);
     }
 
     //Création de l'objet de connexion
     $bdd = new PDO('mysql:host=localhost;dbname=task','root','root',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-    $user->$bdd = $bdd;
-    $user->$firstname = $firstname;
-    $user->$lastname =  $lastname;
-    $user->$id_user = $_SESSION['id'];
-    
-    $data = $user->updateUser();
+    $user = new Users($bdd);
+    $user->setIdUser($_SESSION['id'])
+    ->$user->setFirstname($firstname)
+    ->$user->setLastname($lastname)
+    ->$user->updateUser();
 }
 
 include './View/header.php';
