@@ -9,3 +9,4 @@
             <label for="lastname">Nom :</label><input id="lastname" type="text" name="lastname">
             <input type="submit" name="update" value="Mettre à Jour">
         </form>
+        <p><?php echo $message ?></p>

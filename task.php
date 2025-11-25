@@ -87,7 +87,11 @@ foreach($data as $task){
 
 //Affichage de la vue
 include './View/header.php';
+$header = new Header();
+echo $header->setTitle($title)->setStyle($style)->renderHeader();
 
 include './View/view_task.php';
 
 include './View/footer.php';
+$footer = new Footer();
+echo $footer->renderFooter();
