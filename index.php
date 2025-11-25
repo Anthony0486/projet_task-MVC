@@ -7,6 +7,7 @@ include './utils/functions.php';
 include './Model/UsersModel.php';
 include './View/header.php';
 include './View/view_accueil.php';
+include './View/view_compte.php';
 include './View/footer.php';
 
 class AccueilController{
@@ -187,6 +188,9 @@ class AccueilController{
 
 $accueil = new AccueilController();
 $accueil->displayAccueil();
+
+$info = new InfoView();
+$info->renderInfo();
 
 
 ?>

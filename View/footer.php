@@ -19,8 +19,8 @@ class Footer{
     public function renderFooter(){
         return "</main>
                 <footer>
-                    ".$this->getContent();
-                    "
+                    ".$this->getContent()."
+                    
                 </footer>
             </body>
             </html>";
