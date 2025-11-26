@@ -38,7 +38,7 @@ class Header {
                 $link = "<li><a href='./index.php'>Accueil TODO LIST</a></li>";
                 break;
             case 'accueil TODO LIST' :
-                $link = "<li><a href='./info.php'>Vos Infos</a></li>";
+                $link = "<li><a href='./infoController.php'>Vos Infos</a></li>";
                 break;
         }
 

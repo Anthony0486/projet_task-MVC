@@ -8,7 +8,7 @@ class InfoView {
     public function setMessage(string $message): self {$this->message = $message; return $this;}
 
     public function renderInfo(): string{
-        if(!isset($_SESSION['role'])){
+        if(isset($_SESSION['role'])){
             return "<h1>Voici Vos Infos</h1>
             <p>Pseudo : {$_SESSION['nickname']}</p>
             <p>Email : {$_SESSION['email']}</p>
