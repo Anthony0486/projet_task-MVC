@@ -10,15 +10,13 @@ include './View/view_compte.php';
 include './View/footer.php';
 
 
-class infoController {
+class InfoController {
 
     private string $title = 'Mon Compte Utilisateur';
-    private string $style='./src/style/style-accueil.css';
+    private string $style='./src/style/style-info.css';
     private string $message = '';
-    private string $messageCo = '';
     private Users $model;
     private Header $header;
-    private AccueilView $accueil;
     private Footer $footer;
     private InfoView $info;
 
@@ -26,7 +24,6 @@ class infoController {
     public function __construct(){
         $this->model = new Users(new PDO('mysql:host=localhost;dbname=task','root','root',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)));
         $this->header = new Header();
-        $this->accueil = new AccueilView();
         $this->footer = new Footer();
         $this->info = new InfoView();
     }
@@ -39,26 +36,22 @@ class infoController {
 
     public function getMessage(): string { return $this->message; }
     public function setMessage(string $message): self { $this->message = $message; return $this; }
-
-    public function getMessageCo(): string { return $this->messageCo; }
-    public function setMessageCo(string $messageCo): self { $this->messageCo = $messageCo; return $this; }
-
     public function getModel(): Users { return $this->model; }
     public function setModel(Users $model): self { $this->model = $model; return $this; }
 
     public function getHeader(): Header { return $this->header; }
     public function setHeader(Header $header): self { $this->header = $header; return $this; }
-
-    public function getAccueil(): AccueilView { return $this->accueil; }
-    public function setAccueil(AccueilView $accueil): self { $this->accueil = $accueil; return $this; }
-
     public function getFooter(): Footer { return $this->footer; }
     public function setFooter(Footer $footer): self { $this->footer = $footer; return $this; }
     public function getInfo(): InfoView {return $this->info;}
     public function setInfo(InfoView $info): self {$this->info = $info;return $this;}
 
-
-    public function updateUser(): string{
+    public function isConnected(){
+        if(!isset($_SESSION['id'])){
+            header('location:./index.php');
+        }
+    }
+    public function updateUser(): void{
     if(isset($_POST['update'])){
         $firstname = '';
         $lastname = '';
@@ -73,27 +66,26 @@ class infoController {
 
     $user->setFirstname($firstname)->setLastname($lastname)->setIdUser($_SESSION['id']);
 
-    $message = $user->updateUser();
-    }return $message;
-
+    $this->setMessage($user->updateUser());
     }
 
+    }
     public function displayInfo(){
+        $this->isConnected();
+        $this->updateUser();
         echo $this->getHeader()->setTitle($this->getTitle())->setStyle($this->getStyle())->renderHeader();
-        echo $this->getFooter()->setContent("<p>Voici Vos Infos</p>")->renderFooter();
+        echo $this->getInfo()->renderInfo();
+        echo $this->getFooter()->setContent($this->getMessage())->renderFooter();
     }
 }
 
-$header = new Header();
-echo $header->renderHeader();
+
+$info = new InfoController();
+echo $info->displayInfo();
 
 
-$info = new InfoView();
-echo $info->renderInfo();
 
 
-$footer = new Footer();
-echo $footer->renderFooter();
 
 ?>
 

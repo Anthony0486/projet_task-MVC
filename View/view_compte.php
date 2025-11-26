@@ -5,10 +5,10 @@ class InfoView {
     public function __construct(){}
 
     public function getMessage(): string { return $this->message; }
-    public function setMessage(string $message): self {$this->message = $message; return $this;}
+    public function setMessage(string $newMessage): InfoView {$this->message = $newMessage; return $this;}
 
     public function renderInfo(): string{
-        if(isset($_SESSION['role'])){
+        
             return "<h1>Voici Vos Infos</h1>
             <p>Pseudo : {$_SESSION['nickname']}</p>
             <p>Email : {$_SESSION['email']}</p>
@@ -19,8 +19,8 @@ class InfoView {
             <label for='firstname'>Prenom :</label><input id='firstname' type='text' name='firstname'>
             <label for='lastname'>Nom :</label><input id='lastname' type='text' name='lastname'>
             <input type='submit' name='update' value='Mettre à Jour'>
-            </form>";
-        }
+            </form>
+            <p>{$this->getMessage()}</p>";    
     }
 }
 ?>
