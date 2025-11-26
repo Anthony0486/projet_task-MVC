@@ -1,4 +1,5 @@
 <?php
+
 class Header {
     //ATTRIBUT
     private string $title = '';
@@ -35,16 +36,16 @@ class Header {
         switch($this->getTitle()){
             case 'Mon Compte Utilisateur' :
             case 'Mes ToDoes' :
-                $link = "<li><a href='./index.php'>Accueil TODO LIST</a></li>";
+                $link = "<li><a href='/projet_task/accueil'>Accueil TODO LIST</a></li>";
                 break;
             case 'accueil TODO LIST' :
-                $link = "<li><a href='./infoController.php'>Vos Infos</a></li>";
+                $link = "<li><a href='/projet_task/moncompte'>Vos Infos</a></li>";
                 break;
         }
 
         if(isset($_SESSION['nickname'])){
-            $linkSession= "<li><a href='./task.php'>My ToDoes</a></li>
-                        <li><a href='./deco.php'>Se Deconnecter</a></li>";
+            $linkSession= "<li><a href='/projet_task/mestaches'>My ToDoes</a></li>
+                        <li><a href='/projet_task/deco'>Se Deconnecter</a></li>";
         }
 
         if(isset($_SESSION['nickname'])){
@@ -65,7 +66,7 @@ class Header {
                     <header>
                         <nav>
                             <ul>
-                                <li><a href='../index.php'>Accueil General</a></li>".$link.$linkSession."
+                                <li><a href='/projet_task/accueil.php'>Accueil General</a></li>".$link.$linkSession."
                             </ul>
                         </nav>".$span."
                     </header>

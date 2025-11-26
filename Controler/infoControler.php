@@ -1,14 +1,4 @@
 <?php
-//Démarer la Session
-session_start();
-
-//IMPORT DE RESSOURCE
-include './Model/UsersModel.php';
-include './utils/functions.php';
-include './View/header.php';
-include './View/view_compte.php';
-include './View/footer.php';
-
 
 class InfoController {
 
@@ -19,8 +9,7 @@ class InfoController {
     private Header $header;
     private Footer $footer;
     private InfoView $info;
-
-    
+ 
     public function __construct(){
         $this->model = new Users(new PDO('mysql:host=localhost;dbname=task','root','root',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)));
         $this->header = new Header();
@@ -48,7 +37,7 @@ class InfoController {
 
     public function isConnected(){
         if(!isset($_SESSION['id'])){
-            header('location:./index.php');
+            header('/projet_task/accueil/');
         }
     }
     public function updateUser(): void{
@@ -78,12 +67,6 @@ class InfoController {
         echo $this->getFooter()->setContent($this->getMessage())->renderFooter();
     }
 }
-
-
-$info = new InfoController();
-echo $info->displayInfo();
-
-
 
 
 
