@@ -10,8 +10,7 @@ include './View/footer.php';
 
 $url = parse_url($_SERVER['REQUEST_URI']);
 
-var_dump($url);
-
+// var_dump($url); 
 $path = '';
 
 if(isset($url['path'])){
