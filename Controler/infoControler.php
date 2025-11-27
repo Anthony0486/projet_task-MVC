@@ -37,7 +37,7 @@ class InfoController {
 
     public function isConnected(){
         if(!isset($_SESSION['id'])){
-            header('/projet_task/accueil/');
+            header('Location: /projet_task/accueil/');
         }
     }
     public function updateUser(): void{

@@ -66,7 +66,7 @@ class Header {
                     <header>
                         <nav>
                             <ul>
-                                <li><a href='/projet_task/accueil.php'>Accueil General</a></li>".$link.$linkSession."
+                                <li><a href='/projet_task/accueil'>Accueil General</a></li>".$link.$linkSession."
                             </ul>
                         </nav>".$span."
                     </header>
