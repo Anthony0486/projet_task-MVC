@@ -1,11 +1,12 @@
 <?php
-
+include './View/view_task.php';
 //Initialisation des variables d'affichages
 $title = "Mes ToDoes";
 $style = "./src/style/style-todo.css";
 $message = "";
 $checkboxCategories = '';
 $todoList = '';
+
 
 //Traitement de l'affichage des Categories dans le formulaire
 //1) Création de l'objet de connexion PDO
@@ -22,6 +23,9 @@ foreach($data as $category){
 //Le Traitement le formulaire d'Ajout d'une Task
 //1) Vérifier la réception du formulaire
 if(isset($_POST['addTask'])){
+    $dateTask = $_POST['dateTask'];
+    $timeTask = (new DateTime())->format('H:i:s');
+    $dateTimeTask = $dateTask . " " . $timeTask;
    //2) Sécurité : Vérifier les champs vides
    if(!empty($_POST['nameTask']) && !empty($_POST['contentTask']) && !empty($_POST['dateTask']) && !empty($_POST['category'])){
         //3) Sécurité : vérifier le format des données -> pas de format à valider (sauf utilisation de REGEX)
@@ -52,8 +56,6 @@ if(isset($_POST['addTask'])){
             //6) J'appelle le Model pour créer la Task
             //7) J'affiche le message de confirmation
             $message = createTask($bdd, $name, $content, $date, $_SESSION['id'], $tabCategory);
-            // header("Location: ./Controler/task.php");
-            // exit();
         }else{//Else checkbox pas au bon format
             $message = "Checkbox pas au bon format !";
         }
@@ -82,12 +84,12 @@ foreach($data as $task){
 
 
 //Affichage de la vue
-
+include './View/header.php';
 $header = new Header();
 echo $header->setTitle($title)->setStyle($style)->renderHeader();
 
-include "./View/view_task.php";
 
+include './View/footer.php';
 $footer = new Footer();
 echo $footer->renderFooter();
 

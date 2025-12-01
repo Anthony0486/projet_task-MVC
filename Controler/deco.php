@@ -4,7 +4,6 @@
 session_destroy();
 
 //Redirection HTTP
-
-header("Location: /projet_task/accueil");
+header('/projet_task/accueil');
 
 ?>

@@ -10,8 +10,7 @@ include './View/footer.php';
 
 $url = parse_url($_SERVER['REQUEST_URI']);
 
-// var_dump($url);
-
+// var_dump($url); 
 $path = '';
 
 if(isset($url['path'])){
@@ -40,7 +39,8 @@ switch($path){
     case '/projet_task/deco':
         include './Controler/deco.php';
         break;
-    default : './Controler/404.php';
+    default : 
+        include './Controler/404.php';
         break;
 }
 
