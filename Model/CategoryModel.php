@@ -1,5 +1,5 @@
 <?php
-function readCategroires($bdd){
+function readCategorie($bdd){
     try{
         //PRéparation de la requête
         $req = $bdd->prepare('SELECT c.id_category, c.category FROM category c');

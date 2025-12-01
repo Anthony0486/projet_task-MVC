@@ -39,6 +39,7 @@ function createTask($bdd, $name, $content, $date, $id, $tabCategory){
     }catch(EXCEPTION $error){
         die($error->getMessage());
     }
+    
 }
 
 function readTasksByUser($bdd,$id){

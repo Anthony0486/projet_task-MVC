@@ -17,11 +17,11 @@ $path = '';
 if(isset($url['path'])){
     $path = $url['path'];
 }else{
-    $path = '/projet_task/';
+    $path = "/projet_task/";
 }
 
 switch($path){
-    case '/projet_task/':
+    case "/projet_task/":
     case '/projet_task/accueil':
         include './View/view_accueil.php';
         include './Controler/accueil.php';

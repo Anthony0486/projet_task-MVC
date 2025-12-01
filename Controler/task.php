@@ -1,5 +1,5 @@
 <?php
-include './View/view_task.php';
+
 //Initialisation des variables d'affichages
 $title = "Mes ToDoes";
 $style = "./src/style/style-todo.css";
@@ -12,7 +12,7 @@ $todoList = '';
 $bdd = new PDO('mysql:host=localhost;dbname=task','root','root',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
 //2) Lancer la requête SELECT via le model
-$data = readCategroires($bdd);
+$data = readCategorie($bdd);
 
 //3) Créer la liste des checkbox pour le formulaire
 foreach($data as $category){
@@ -52,6 +52,8 @@ if(isset($_POST['addTask'])){
             //6) J'appelle le Model pour créer la Task
             //7) J'affiche le message de confirmation
             $message = createTask($bdd, $name, $content, $date, $_SESSION['id'], $tabCategory);
+            // header("Location: ./Controler/task.php");
+            // exit();
         }else{//Else checkbox pas au bon format
             $message = "Checkbox pas au bon format !";
         }
@@ -78,13 +80,14 @@ foreach($data as $task){
     </article>";
 }
 
+
 //Affichage de la vue
-include './View/header.php';
+
 $header = new Header();
 echo $header->setTitle($title)->setStyle($style)->renderHeader();
 
+include "./View/view_task.php";
 
-include './View/footer.php';
 $footer = new Footer();
 echo $footer->renderFooter();
 

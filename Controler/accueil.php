@@ -176,7 +176,5 @@ class AccueilController{
     }
 }
 
-// $info = new InfoView();
-// $info->renderInfo();
 
 ?>
